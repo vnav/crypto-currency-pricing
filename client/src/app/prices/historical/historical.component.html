@@ -1,0 +1,66 @@
+
+<section class="p-4">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Crypto Currency Prices</h4>
+      <h6 class="card-subtitle mb-2 text-muted">Historical</h6>
+    </div>
+    <div class="card-body">
+      <div class="filter">
+        <div class="row pl-5 pt-4">
+          <div class="col-2">
+            <mat-form-field>
+              <mat-label>Currency</mat-label>
+              <mat-select [(ngModel)]="selectedCurrency" (ngModelChange)="refreshDateList($event)">
+                <mat-option *ngFor="let currency of currencyList" [value]="currency">{{currency}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-2">
+            <mat-form-field>
+              <mat-label>Date</mat-label>
+              <mat-select [(ngModel)]="selectedDate">
+                <mat-option *ngFor="let date of currencyDateList" [value]="date | date:'yyyyMMdd'">{{date}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <button mat-raised-button color="primary" (click)="getPrincipalQuote()">Get best quote</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote pt-5">
+        <ul class="quote-list">
+          <li class="card quote-card d-inline-block mx-2 mb-4" *ngFor="let quote of quoteList; index as i;">
+            <div class="card-header">
+              <button type="button" class="close" aria-label="Close" (click)="removeQuote(i)">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <h5 class="card-title text-center">{{quote.currency}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted text-center">{{quote.date}}</h6>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <div class="text-success text-center">Buy</div>
+                  <h4 class="text-center">$ {{quote.buyPrice}}</h4>
+                  <div class="small text-center">{{quote.buyTime}}</div>
+                </div>
+                <div class="col-6">
+                  <div class="text-danger text-center">Sell</div>
+                  <h4 class="text-center">$ {{quote.sellPrice}}</h4>
+                  <div class="small text-center">{{quote.sellTime}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <h6 class="text-muted">Profit:</h6>
+              <h5>$ {{quote.profit}}</h5>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
