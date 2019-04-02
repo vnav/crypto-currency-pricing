@@ -33,5 +33,3 @@ Environment setup:
 Notes:
    1. Sample data is inserted in H2 database via file \server\src\main\resources\data.sql
    
-  
-  
