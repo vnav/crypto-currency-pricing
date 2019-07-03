@@ -11,7 +11,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,13 +33,11 @@ public class CurrencyPriceController {
 	}	
 	
 	@GetMapping("/all")
-	@CrossOrigin(origins = "http://localhost:4200")
     public List<CurrencyPrice> findAll() {
 		return currencyPriceService.findAll();
     }
 	
 	@GetMapping("/{currency}/{date}")
-	@CrossOrigin(origins = "http://localhost:4200")
     public List<CurrencyPrice> findByCurrencyAndDate(@PathVariable("currency") String currency, @PathVariable("date") @DateTimeFormat(pattern = DATE_PATTERN) LocalDate date) {
 		try {
 			currency = currency.toUpperCase();
@@ -51,13 +48,11 @@ public class CurrencyPriceController {
     }
 		
 	@GetMapping("/currencies")
-	@CrossOrigin(origins = "http://localhost:4200")
     public Set<String> findDistinctCurrencies() {		
 		return currencyPriceService.findDistinctCurrencies();
     }	
 
 	@GetMapping("/{currency}/dates")
-	@CrossOrigin(origins = "http://localhost:4200")
     public Set<LocalDate> findDistinctDateByCurrency(@PathVariable("currency") String currency) {
 		try {
 			currency = currency.toUpperCase();
@@ -68,7 +63,6 @@ public class CurrencyPriceController {
     }
 	
 	@GetMapping("/{currency}/{date}/principal")
-	@CrossOrigin(origins = "http://localhost:4200")
     public Quote getPrincipalQuote(@PathVariable("currency") String currency, @PathVariable("date") @DateTimeFormat(pattern = DATE_PATTERN) LocalDate date) {
 		try {
 			currency = currency.toUpperCase();
