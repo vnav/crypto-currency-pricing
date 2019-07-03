@@ -69,19 +69,19 @@ public class CurrencyPriceServiceImpl implements CurrencyPriceService {
 			for (int j = i + 1; j < size; j++) {				
 				CurrencyPrice end = currencyPriceList.get(j);
 				
-				Quote quote = new Quote();
-				quote.setBuyTime(start.getTime());
-				quote.setBuyPrice(start.getPrice());
-				quote.setSellTime(end.getTime());
-				quote.setSellPrice(end.getPrice());
-				quote.setProfit(end.getPrice().subtract(start.getPrice()));
-				quote.setCurrency(currency);
-				quote.setDate(date);
+				Quote quote = new Quote.Builder()
+							.buyTime(start.getTime())
+							.buyPrice(start.getPrice())
+							.sellTime(end.getTime())
+							.sellPrice(end.getPrice())
+							.profit(end.getPrice().subtract(start.getPrice()))
+							.currency(currency)
+							.date(date)
+							.build();
 				
 				quoteList.add(quote);
 			}			
-		}
-		
+		}		
 		return quoteList;
 	}
 	

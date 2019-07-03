@@ -32,7 +32,7 @@
 
       <div class="quote pt-5">
         <ul class="quote-list">
-          <li class="card quote-card d-inline-block mx-2 mb-4" *ngFor="let quote of quoteList; index as i;">
+          <li class="card quote-card d-inline-block mx-2 mb-4" *ngFor="let quote of quoteList; index as i;" [@enter] [@leave]>
             <div class="card-header">
               <button type="button" class="close" aria-label="Close" (click)="removeQuote(i)">
                   <span aria-hidden="true">&times;</span>

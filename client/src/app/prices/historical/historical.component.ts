@@ -2,11 +2,16 @@ import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate  } from '@angular/common';
 import { HistoricalService } from './historical.service';
 import { Quote } from './models/quote';
+import { zoomInOnEnterAnimation, zoomOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-historical',
   templateUrl: './historical.component.html',
-  styleUrls: ['./historical.component.scss']
+  styleUrls: ['./historical.component.scss'],
+  animations: [
+    zoomInOnEnterAnimation({anchor: 'enter', duration: 300, delay: 100}),
+    zoomOutOnLeaveAnimation({anchor: 'leave', duration: 500, delay: 100})
+  ]
 })
 export class HistoricalComponent implements OnInit {
   currencyList: string[];
